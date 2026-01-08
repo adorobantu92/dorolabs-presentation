@@ -1,0 +1,11 @@
+# DoroLabs Website - robots.txt
+# https://www.dorolabs.eu
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.dorolabs.eu/sitemap.xml
+
+# Crawl-delay (optional, for polite bots)
+Crawl-delay: 1

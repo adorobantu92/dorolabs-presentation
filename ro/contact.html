@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contactează DoroLabs pentru servicii SEO, automatizare AI sau sisteme de reminder pentru programări. Răspundem în 24 de ore.">
+    <meta name="keywords" content="contact DoroLabs, consultanță business, cerere SEO">
+    <meta name="author" content="DoroLabs">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Contact DoroLabs">
+    <meta property="og:description" content="Contactează-ne pentru o consultație gratuită despre SEO, automatizare sau sisteme de remindere.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dorolabs.eu/ro/contact.html">
+    <meta property="og:image" content="https://www.dorolabs.eu/assets/og-image.png">
+    
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href="https://www.dorolabs.eu/ro/contact.html">
+    <link rel="alternate" hreflang="en" href="https://www.dorolabs.eu/contact.html">
+    <link rel="alternate" hreflang="ro" href="https://www.dorolabs.eu/ro/contact.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.dorolabs.eu/contact.html">
+    
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    
+    <title>Contactează-ne - DoroLabs</title>
+    
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="/ro/" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
+                    <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                </svg>
+                <span>DoroLabs</span>
+            </a>
+            <button class="nav-toggle" aria-label="Comută navigarea" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="/ro/">Acasă</a></li>
+                <li><a href="/ro/servicii.html">Servicii</a></li>
+                <li><a href="/ro/cum-functioneaza.html">Cum Funcționează</a></li>
+                <li><a href="/ro/despre.html">Despre</a></li>
+                <li><a href="/ro/contact.html" class="btn btn-primary active">Contact</a></li>
+                <li class="lang-switcher">
+                    <a href="/contact.html" class="lang-link" lang="en">EN</a>
+                    <span class="lang-sep">|</span>
+                    <a href="/ro/contact.html" class="lang-link active" lang="ro">RO</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Contactează-ne</h1>
+                <p>Hai să discutăm cum putem ajuta afacerea ta să crească.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <h2>Trimite-ne un Mesaj</h2>
+                        <p>Completează formularul de mai jos și îți vom răspunde în 24 de ore.</p>
+                        
+                        <!-- Using Formspree for free form handling -->
+                        <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Numele Tău *</label>
+                                <input type="text" id="name" name="name" required placeholder="Ion Popescu">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Adresă Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="ion@companie.ro">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Companie / Nume Afacere</label>
+                                <input type="text" id="company" name="company" placeholder="Numele Afacerii Tale">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Cu ce te putem ajuta?</label>
+                                <select id="service" name="service">
+                                    <option value="">Selectează un serviciu...</option>
+                                    <option value="seo">SEO pentru Google</option>
+                                    <option value="ai-automation">Agenți AI & Automatizare</option>
+                                    <option value="reminders">Remindere Programări</option>
+                                    <option value="custom">Unelte Personalizate</option>
+                                    <option value="not-sure">Nu sunt sigur încă</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Mesajul Tău *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Spune-ne despre afacerea ta și ce provocări întâmpini..."></textarea>
+                            </div>
+                            
+                            <div class="form-group form-consent">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="consent" required>
+                                    <span>Sunt de acord cu <a href="/ro/confidentialitate.html" target="_blank">Politica de Confidențialitate</a> și consimț să fiu contactat în legătură cu cererea mea.</span>
+                                </label>
+                            </div>
+                            
+                            <!-- Honeypot for spam prevention -->
+                            <input type="text" name="_gotcha" style="display:none">
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">Trimite Mesajul</button>
+                        </form>
+                        
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <h3>Mesaj Trimis!</h3>
+                            <p>Mulțumim că ne-ai contactat. Îți vom răspunde în 24 de ore.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <h3>Email</h3>
+                            <p>Pentru întrebări și suport:</p>
+                            <a href="mailto:contact@dorolabs.eu" class="contact-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                contact@dorolabs.eu
+                            </a>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Timp de Răspuns</h3>
+                            <p>De obicei răspundem în 24 de ore în zilele lucrătoare. Pentru chestiuni urgente, te rugăm să menționezi în mesaj.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>La Ce Să Te Aștepți</h3>
+                            <ul>
+                                <li>Confirmare rapidă a mesajului tău</li>
+                                <li>Întrebări inițiale pentru a înțelege nevoile tale</li>
+                                <li>Propunere pentru un apel de descoperire dacă există potrivire</li>
+                                <li>Fără obligații, fără presiune</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card highlight">
+                            <h3>Apel Gratuit de Descoperire</h3>
+                            <p>Nu ești sigur ce ai nevoie? Programează un apel gratuit de 15 minute și te ajutăm să identifici cea mai bună cale.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/ro/" class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                            <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
+                            <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                        </svg>
+                        <span>DoroLabs</span>
+                    </a>
+                    <p>Unelte inteligente pentru creșterea afacerilor mici.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicii</h4>
+                    <ul>
+                        <li><a href="/ro/servicii.html#seo">SEO pentru Google</a></li>
+                        <li><a href="/ro/servicii.html#ai">AI & Automatizare</a></li>
+                        <li><a href="/ro/servicii.html#remindere">Remindere Programări</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Companie</h4>
+                    <ul>
+                        <li><a href="/ro/despre.html">Despre</a></li>
+                        <li><a href="/ro/contact.html">Contact</a></li>
+                        <li><a href="/ro/confidentialitate.html">Politica de Confidențialitate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:contact@dorolabs.eu">contact@dorolabs.eu</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DoroLabs. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

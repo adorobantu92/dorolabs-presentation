@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact DoroLabs for SEO services, AI automation, or appointment reminder systems. We respond within 24 hours.">
+    <meta name="keywords" content="contact DoroLabs, business consultation, SEO inquiry">
+    <meta name="author" content="DoroLabs">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Contact DoroLabs">
+    <meta property="og:description" content="Get in touch for a free consultation about SEO, automation, or reminder systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dorolabs.eu/contact.html">
+    <meta property="og:image" content="https://www.dorolabs.eu/assets/og-image.png">
+    
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href="https://www.dorolabs.eu/contact.html">
+    <link rel="alternate" hreflang="en" href="https://www.dorolabs.eu/contact.html">
+    <link rel="alternate" hreflang="ro" href="https://www.dorolabs.eu/ro/contact.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.dorolabs.eu/contact.html">
+    
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    
+    <title>Contact Us - DoroLabs</title>
+    
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
+                    <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                </svg>
+                <span>DoroLabs</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/how-it-works.html">How It Works</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html" class="btn btn-primary active">Contact</a></li>
+                <li class="lang-switcher">
+                    <a href="/contact.html" class="lang-link active" lang="en">EN</a>
+                    <span class="lang-sep">|</span>
+                    <a href="/ro/contact.html" class="lang-link" lang="ro">RO</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Let's discuss how we can help your business grow.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <h2>Send Us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                        
+                        <!-- Using Formspree for free form handling -->
+                        <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="John Smith">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="john@company.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Company / Business Name</label>
+                                <input type="text" id="company" name="company" placeholder="Your Business Name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">What can we help with?</label>
+                                <select id="service" name="service">
+                                    <option value="">Select a service...</option>
+                                    <option value="seo">SEO for Google</option>
+                                    <option value="ai-automation">AI Agents & Automation</option>
+                                    <option value="reminders">Appointment Reminders</option>
+                                    <option value="custom">Custom Tools</option>
+                                    <option value="not-sure">Not sure yet</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your business and what challenges you're facing..."></textarea>
+                            </div>
+                            
+                            <div class="form-group form-consent">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="consent" required>
+                                    <span>I agree to the <a href="/privacy.html" target="_blank">Privacy Policy</a> and consent to being contacted about my inquiry.</span>
+                                </label>
+                            </div>
+                            
+                            <!-- Honeypot for spam prevention -->
+                            <input type="text" name="_gotcha" style="display:none">
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                        </form>
+                        
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <h3>Message Sent!</h3>
+                            <p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <h3>Email Us</h3>
+                            <p>For inquiries and support:</p>
+                            <a href="mailto:contact@dorolabs.eu" class="contact-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                contact@dorolabs.eu
+                            </a>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Response Time</h3>
+                            <p>We typically respond within 24 hours on business days. For urgent matters, please mention it in your message.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>What to Expect</h3>
+                            <ul>
+                                <li>Quick acknowledgment of your message</li>
+                                <li>Initial questions to understand your needs</li>
+                                <li>Proposal for a discovery call if there's a fit</li>
+                                <li>No obligation, no pressure</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card highlight">
+                            <h3>Free Discovery Call</h3>
+                            <p>Not sure what you need? Book a free 15-minute call and we'll help you figure out the best path forward.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                            <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
+                            <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                        </svg>
+                        <span>DoroLabs</span>
+                    </a>
+                    <p>Smart tools for small business growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/services.html#seo">SEO for Google</a></li>
+                        <li><a href="/services.html#ai">AI & Automation</a></li>
+                        <li><a href="/services.html#reminders">Appointment Reminders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:contact@dorolabs.eu">contact@dorolabs.eu</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DoroLabs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

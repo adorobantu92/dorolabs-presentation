@@ -1,0 +1,19 @@
+{
+  "name": "dorolabs-website",
+  "version": "1.0.0",
+  "description": "DoroLabs presentation website - SEO, AI Automation & Appointment Reminders",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "preview": "npx serve . -p 8080"
+  },
+  "keywords": [
+    "dorolabs",
+    "seo",
+    "automation",
+    "appointment-reminders",
+    "ai-agents"
+  ],
+  "author": "DoroLabs",
+  "license": "UNLICENSED"
+}
