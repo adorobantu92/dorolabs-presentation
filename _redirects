@@ -1,1 +1,4 @@
 /*    /index.html   200
+
+# Legacy Romanian services page redirect
+/ro/servicii.html   /ro/servicii/   301
