@@ -63,7 +63,7 @@
                    <strong>Nu vindem date, nu facem reclame, nu te urmărim pe alte site-uri.</strong></p>
                 <p><a href="/ro/confidentialitate.html">Politica de confidențialitate</a></p>
                 <div class="cookie-banner-actions">
-                    <button type="button" class="btn btn-primary" id="cookie-accept">Accept</button>
+                    <button type="button" class="btn btn-accent" id="cookie-accept">Accept</button>
                     <button type="button" class="btn btn-outline" id="cookie-refuse">Refuz</button>
                 </div>
             </div>

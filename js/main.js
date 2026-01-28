@@ -131,6 +131,70 @@
             el.classList.add('animate-on-scroll');
             observer.observe(el);
         });
+
+        // Observe homepage fade-in sections (old)
+        document.querySelectorAll('.fade-in-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe homepage reveal sections (new dark theme)
+        document.querySelectorAll('.reveal-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe service page sections (content visible by default, animation is enhancement)
+        document.querySelectorAll('.sp-section').forEach(el => {
+            el.classList.add('animate-ready');
+            observer.observe(el);
+        });
     }
+
+    // Number counter animation for stats
+    const statValues = document.querySelectorAll('.stat-value[data-count], .proof-number[data-count], .hp-stat-num[data-count]');
+    if (statValues.length > 0 && 'IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count, 10);
+                    const duration = 1500;
+                    const startTime = performance.now();
+                    
+                    function updateCounter(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(easeOut * target);
+                        el.textContent = current;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            el.textContent = target;
+                        }
+                    }
+                    
+                    requestAnimationFrame(updateCounter);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statValues.forEach(el => counterObserver.observe(el));
+    }
+
+    // Package accordion toggle functionality
+    const packageToggles = document.querySelectorAll('.hp-package-toggle');
+    packageToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            const details = this.nextElementSibling;
+            
+            if (details && details.classList.contains('hp-package-details')) {
+                this.setAttribute('aria-expanded', !isExpanded);
+                details.classList.toggle('open', !isExpanded);
+            }
+        });
+    });
 
 })();

@@ -25,14 +25,14 @@
     
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-    <header class="header">
+<body class="theme-premium">
+    <header class="header header-premium">
         <nav class="nav container">
             <a href="/ro/" class="logo">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                     <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                    <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                    <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                 </svg>
                 <span>DoroLabs</span>
             </a>
@@ -46,7 +46,7 @@
                 <li><a href="/ro/servicii/">Servicii</a></li>
                 <li><a href="/ro/cum-functioneaza.html">Cum Funcționează</a></li>
                 <li><a href="/ro/despre.html">Despre</a></li>
-                <li><a href="/ro/contact.html" class="btn btn-primary active">Contact</a></li>
+                <li><a href="/ro/contact.html" class="btn btn-accent active">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -71,36 +71,67 @@
                         
                         <!-- Using Formspree for free form handling -->
                         <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form" id="contact-form">
-                            <div class="form-group">
-                                <label for="name">Numele Tău *</label>
-                                <input type="text" id="name" name="name" required placeholder="Ion Popescu">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Numele Tău *</label>
+                                    <input type="text" id="name" name="name" required placeholder="Ion Popescu">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Telefon *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="0721 123 456">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Adresă Email *</label>
+                                    <input type="email" id="email" name="email" required placeholder="ion@companie.ro">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="company">Companie / Nume Afacere</label>
+                                    <input type="text" id="company" name="company" placeholder="Numele Afacerii Tale">
+                                </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="email">Adresă Email *</label>
-                                <input type="email" id="email" name="email" required placeholder="ion@companie.ro">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="company">Companie / Nume Afacere</label>
-                                <input type="text" id="company" name="company" placeholder="Numele Afacerii Tale">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="service">Cu ce te putem ajuta?</label>
-                                <select id="service" name="service">
-                                    <option value="">Selectează un serviciu...</option>
-                                    <option value="seo">SEO pentru Google</option>
-                                    <option value="ai-automation">Agenți AI & Automatizare</option>
-                                    <option value="reminders">Remindere Programări</option>
-                                    <option value="custom">Unelte Personalizate</option>
-                                    <option value="not-sure">Nu sunt sigur încă</option>
+                                <label for="existing-website">Ai deja un site web?</label>
+                                <select id="existing-website" name="existing_website">
+                                    <option value="">Selectează...</option>
+                                    <option value="da">Da, am un site</option>
+                                    <option value="nu">Nu, am nevoie de unul nou</option>
+                                    <option value="refacere">Am, dar vreau să-l refac</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message">Mesajul Tău *</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Spune-ne despre afacerea ta și ce provocări întâmpini..."></textarea>
+                                <label for="interest">Ce te interesează cel mai mult?</label>
+                                <select id="interest" name="interest">
+                                    <option value="">Selectează...</option>
+                                    <option value="site-nou">Site web nou</option>
+                                    <option value="seo">Optimizare SEO</option>
+                                    <option value="automatizare">Automatizări cu AI</option>
+                                    <option value="remindere">Sistem de remindere</option>
+                                    <option value="pachet-complet">Pachet complet</option>
+                                    <option value="altceva">Altceva</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Buget estimat</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Selectează...</option>
+                                    <option value="sub-500">Sub 500 €</option>
+                                    <option value="500-1000">500 € - 1000 €</option>
+                                    <option value="1000-2000">1000 € - 2000 €</option>
+                                    <option value="peste-2000">Peste 2000 €</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Detalii suplimentare</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Spune-ne mai multe despre proiect sau ce așteptări ai..."></textarea>
                             </div>
                             
                             <div class="form-group form-consent">
@@ -113,7 +144,7 @@
                             <!-- Honeypot for spam prevention -->
                             <input type="text" name="_gotcha" style="display:none">
                             
-                            <button type="submit" class="btn btn-primary btn-lg">Trimite Mesajul</button>
+                            <button type="submit" class="btn btn-accent btn-lg">Trimite Cererea</button>
                         </form>
                         
                         <div class="form-success" id="form-success" style="display: none;">
@@ -172,19 +203,19 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer footer-premium">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/ro/" class="logo">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                            <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                             <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                            <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                            <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                         </svg>
                         <span>DoroLabs</span>
                     </a>
-                    <p>Unelte inteligente pentru creșterea afacerilor mici.</p>
+                    <p>Site-uri care aduc clienți.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Servicii</h4>

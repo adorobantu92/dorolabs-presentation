@@ -24,14 +24,14 @@
     
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-    <header class="header">
+<body class="theme-premium">
+    <header class="header header-premium">
         <nav class="nav container">
             <a href="/ro/" class="logo">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                     <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                    <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                    <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                 </svg>
                 <span>DoroLabs</span>
             </a>
@@ -45,83 +45,94 @@
                 <li><a href="/ro/servicii/" class="active">Servicii</a></li>
                 <li><a href="/ro/cum-functioneaza.html">Cum Funcționează</a></li>
                 <li><a href="/ro/despre.html">Despre</a></li>
-                <li><a href="/ro/contact.html" class="btn btn-primary">Contact</a></li>
+                <li><a href="/ro/contact.html" class="btn btn-accent">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="page-header">
+        <!-- HERO: Dark Section -->
+        <section class="sp-hero">
             <div class="container">
                 <h1>Serviciile Noastre</h1>
                 <p>Soluții digitale pentru afaceri mici care vor să crească inteligent și eficient.</p>
             </div>
         </section>
 
-        <section class="services-hub">
+        <!-- SERVICES GRID: Light Section -->
+        <section class="services-list-section">
             <div class="container">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <div class="services-list-grid">
+                    <a href="/ro/servicii/seo/" class="service-list-card">
+                        <div class="service-list-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                         </div>
-                        <h2>SEO pentru Google</h2>
-                        <p><a href="/ro/servicii/seo/">Servicii SEO pentru afaceri mici</a>: optimizare completă pentru motoarele de căutare. Crește vizibilitatea afacerii tale și atrage clienți care deja caută serviciile tale.</p>
-                        <a href="/ro/servicii/seo/" class="btn btn-primary">Află Mai Multe</a>
-                    </div>
+                        <div class="service-list-content">
+                            <h2>SEO pentru Google</h2>
+                            <p>Optimizare completă pentru motoarele de căutare. Crește vizibilitatea și atrage clienți care deja caută serviciile tale.</p>
+                            <span class="service-list-cta">Detalii →</span>
+                        </div>
+                    </a>
                     
-                    <div class="service-card">
-                        <div class="service-icon-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                    <a href="/ro/servicii/automatizare-ai/" class="service-list-card">
+                        <div class="service-list-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                         </div>
-                        <h2>Automatizare cu AI</h2>
-                        <p>Agenți inteligenți și fluxuri automate care preiau sarcinile repetitive. Economisește timp și concentrează-te pe ce contează.</p>
-                        <a href="/ro/servicii/automatizare-ai/" class="btn btn-secondary">Află Mai Multe</a>
-                    </div>
+                        <div class="service-list-content">
+                            <h2>Automatizare cu AI</h2>
+                            <p>Agenți inteligenți și fluxuri automate care preiau sarcinile repetitive. Economisește timp și concentrează-te pe ce contează.</p>
+                            <span class="service-list-cta">Detalii →</span>
+                        </div>
+                    </a>
                     
-                    <div class="service-card">
-                        <div class="service-icon-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                    <a href="/ro/servicii/remindere-programari/" class="service-list-card">
+                        <div class="service-list-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
                         </div>
-                        <h2>Remindere Programări</h2>
-                        <p>Sisteme automate de notificare prin SMS și email. Reduce neprezentările și menține-ți calendarul plin.</p>
-                        <a href="/ro/servicii/remindere-programari/" class="btn btn-secondary">Află Mai Multe</a>
-                    </div>
+                        <div class="service-list-content">
+                            <h2>Remindere Programări</h2>
+                            <p>Sisteme automate de notificare prin SMS și email. Reduce neprezentările și menține-ți calendarul plin.</p>
+                            <span class="service-list-cta">Detalii →</span>
+                        </div>
+                    </a>
                     
-                    <div class="service-card">
-                        <div class="service-icon-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    <a href="/ro/servicii/unelte-custom/" class="service-list-card">
+                        <div class="service-list-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                         </div>
-                        <h2>Unelte Personalizate</h2>
-                        <p>Aplicații și dashboard-uri create specific pentru nevoile afacerii tale. Soluții simple, fără complexitatea software-ului enterprise.</p>
-                        <a href="/ro/servicii/unelte-custom/" class="btn btn-secondary">Află Mai Multe</a>
-                    </div>
+                        <div class="service-list-content">
+                            <h2>Unelte Personalizate</h2>
+                            <p>Aplicații și dashboard-uri create specific pentru nevoile afacerii tale. Soluții simple, fără complexitatea software-ului enterprise.</p>
+                            <span class="service-list-cta">Detalii →</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
+        <!-- CTA: Dark Section -->
+        <section class="hp-cta">
             <div class="container">
                 <h2>Nu Ești Sigur Ce Ai Nevoie?</h2>
-                <p>Hai să avem o discuție scurtă. Te ajutăm să identifici soluția potrivită pentru afacerea ta.</p>
-                <a href="/ro/contact.html" class="btn btn-primary btn-lg">Contactează-ne</a>
+                <p>Hai să avem o discuție scurtă. Te ajutăm să identifici soluția potrivită.</p>
+                <a href="/ro/contact.html" class="btn btn-accent btn-lg">Contactează-ne</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer footer-premium">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/ro/" class="logo">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                            <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                             <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                            <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                            <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                         </svg>
                         <span>DoroLabs</span>
                     </a>
-                    <p>Unelte inteligente pentru creșterea afacerilor mici.</p>
+                    <p>Site-uri care aduc clienți.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Servicii</h4>

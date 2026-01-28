@@ -37,14 +37,14 @@
     }
     </script>
 </head>
-<body>
-    <header class="header">
+<body class="theme-premium">
+    <header class="header header-premium">
         <nav class="nav container">
             <a href="/ro/" class="logo">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                     <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                    <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                    <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                 </svg>
                 <span>DoroLabs</span>
             </a>
@@ -58,91 +58,118 @@
                 <li><a href="/ro/servicii/" class="active">Servicii</a></li>
                 <li><a href="/ro/cum-functioneaza.html">Cum Funcționează</a></li>
                 <li><a href="/ro/despre.html">Despre</a></li>
-                <li><a href="/ro/contact.html" class="btn btn-primary">Contact</a></li>
+                <li><a href="/ro/contact.html" class="btn btn-accent">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="page-header">
+        <!-- HERO: Dark -->
+        <section class="sp-hero">
             <div class="container">
+                <div class="sp-hero-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                </div>
                 <h1>Sisteme de Remindere pentru Programări</h1>
                 <p>Reduce neprezentările cu până la 40% cu notificări automate pe care clienții tăi le apreciază.</p>
             </div>
         </section>
 
-        <section class="service-detail">
+        <!-- Package Reference Banner -->
+        <section class="sp-package-ref">
             <div class="container">
-                <div class="service-content">
-                    <div class="service-icon-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                <div class="sp-package-ref-inner">
+                    <span class="sp-package-ref-icon">📦</span>
+                    <p>Acest serviciu este inclus în pachetele <strong>GROW</strong> și <strong>SCALE</strong></p>
+                    <a href="/ro/#pachete" class="btn btn-accent btn-sm">Vezi pachetele →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUDIENCE: Light -->
+        <section class="sp-audience sp-section">
+            <div class="container">
+                <div class="sp-content">
+                    <h2 class="sp-section-title">Pentru Cine Este Acest Serviciu</h2>
+                    <ul>
+                        <li>Cabinete medicale, stomatologice și veterinare</li>
+                        <li>Saloane de coafură, cosmetică, spa și înfrumusețare</li>
+                        <li>Consultanți, coach-i, terapeuți și formatori</li>
+                        <li>Ateliere auto și service-uri care lucrează pe programare</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM: Dark -->
+        <section class="sp-problem sp-section">
+            <div class="container">
+                <div class="sp-content">
+                    <h2 class="sp-section-title">Problema Reală</h2>
+                    <p>Clienții uită de programări. Tu suni manual să confirmi și pierzi timp. Când nu confirmi, ai surprize: loc gol, zi dezorganizată, venituri pierdute. Fiecare neprezentare te costă—nu doar banii de pe programarea respectivă, ci și clientul pe care l-ai fi putut primi în locul ei.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DELIVERABLES: Light -->
+        <section class="sp-deliverables sp-section">
+            <div class="container">
+                <div class="sp-content">
+                    <h2 class="sp-section-title">Ce Facem Concret</h2>
+                    <div class="sp-feature-grid">
+                        <div class="sp-feature">
+                            <h3>Remindere Multi-Canal</h3>
+                            <p>SMS, email sau WhatsApp—alegi ce funcționează pentru clienții tăi.</p>
+                        </div>
+                        <div class="sp-feature">
+                            <h3>Secvențe Configurabile</h3>
+                            <p>Cu 48h înainte, cu 24h, în dimineața zilei—cum preferi.</p>
+                        </div>
+                        <div class="sp-feature">
+                            <h3>Link de Reprogramare</h3>
+                            <p>Clientul mută programarea singur, fără să sune.</p>
+                        </div>
+                        <div class="sp-feature">
+                            <h3>Integrări Calendar</h3>
+                            <p>Google Calendar, Outlook, Calendly sau sistemul tău existent.</p>
+                        </div>
                     </div>
                     
-                    <p class="service-lead">Fiecare programare ratată înseamnă venituri pierdute și timp irosit. Sistemul nostru de remindere contactează automat clienții înainte de programare, reducând dramatic neprezentările și eliberându-te de apelurile manuale de confirmare.</p>
-                    
-                    <div class="service-features">
-                        <div class="feature">
-                            <h2>Notificări Multi-Canal</h2>
-                            <p>Trimitem remindere prin SMS, email și WhatsApp—sau orice combinație preferă clientul. Mesajele ajung pe canalul unde sunt cel mai probabil să fie văzute și citite.</p>
-                        </div>
-                        <div class="feature">
-                            <h2>Secvențe Inteligente de Timing</h2>
-                            <p>Configurăm când pleacă fiecare reminder: cu 48 de ore înainte, cu 24 de ore, în dimineața zilei sau la intervale personalizate. Timing-ul potrivit maximizează rata de confirmare.</p>
-                        </div>
-                        <div class="feature">
-                            <h2>Mesaje Personalizate</h2>
-                            <p>Fiecare notificare include numele clientului, data, ora și detaliile programării. Poți personaliza textul pentru a se potrivi tonului afacerii tale și a include instrucțiuni specifice.</p>
-                        </div>
-                        <div class="feature">
-                            <h2>Reprogramare cu Un Click</h2>
-                            <p>Includem link-uri de reprogramare direct în reminder. Dacă un client nu poate ajunge, poate muta programarea instant fără să sune—păstrând slotul ocupat în loc să devină neprezentare.</p>
-                        </div>
-                        <div class="feature">
-                            <h2>Confirmare Automată</h2>
-                            <p>Clienții pot confirma prezența direct din SMS sau email. Primești notificare când cineva confirmă sau când un slot rămâne neconfirmat și necesită atenție.</p>
-                        </div>
-                        <div class="feature">
-                            <h2>Sincronizare Calendar</h2>
-                            <p>Se integrează cu Google Calendar, Outlook, Calendly și cele mai populare sisteme de programări. Programările noi primesc automat remindere fără configurare manuală.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-outcome">
-                        <h2>Perfect Pentru</h2>
+                    <div class="sp-outcome">
+                        <h3>Ce Rezultate Să Aștepți</h3>
                         <ul>
-                            <li>Cabinete medicale, stomatologice și veterinare</li>
-                            <li>Saloane de coafură, cosmetică și spa</li>
-                            <li>Consultanți, coach-i și terapeuți</li>
-                            <li>Ateliere auto și service-uri cu programare</li>
-                            <li>Orice afacere care lucrează pe bază de programări</li>
+                            <li>În prima săptămână: sistemul funcțional</li>
+                            <li>În prima lună: 25-40% mai puține neprezentări</li>
+                            <li>Nu mai suni manual, calendarul rămâne plin</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
+        <!-- CTA: Deep Dark -->
+        <section class="sp-cta sp-section">
             <div class="container">
                 <h2>Câte Programări Pierzi în Fiecare Lună?</h2>
-                <p>Hai să calculăm împreună cât poți recupera cu un sistem de remindere automate.</p>
-                <a href="/ro/contact.html" class="btn btn-primary btn-lg">Contactează-ne</a>
+                <p>Calculăm împreună cât poți recupera cu remindere automate.</p>
+                <a href="/ro/contact.html" class="btn btn-accent">Contactează-ne</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer footer-premium">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/ro/" class="logo">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                            <rect width="32" height="32" rx="8" fill="#4a7c8a"/>
                             <path d="M8 10h6c3.314 0 6 2.686 6 6s-2.686 6-6 6H8V10z" fill="white"/>
-                            <circle cx="22" cy="16" r="4" fill="#60a5fa"/>
+                            <circle cx="22" cy="16" r="4" fill="#7fb3c2"/>
                         </svg>
                         <span>DoroLabs</span>
                     </a>
-                    <p>Unelte inteligente pentru creșterea afacerilor mici.</p>
+                    <p>Site-uri care aduc clienți.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Servicii</h4>
