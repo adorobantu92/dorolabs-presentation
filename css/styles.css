@@ -1563,6 +1563,13 @@ p {
 /* Page header - dark background in premium */
 .theme-premium .page-header {
     background: var(--pm-dark-bg);
+    padding-top: 5rem;
+}
+
+@media (min-width: 768px) {
+    .theme-premium .page-header {
+        padding-top: 6rem;
+    }
 }
 
 .theme-premium .page-header h1 {
@@ -1655,6 +1662,16 @@ p {
     color: var(--pm-accent-light);
 }
 
+/* About content */
+.theme-premium .about-content .lead {
+    color: var(--pm-light-text);
+    font-weight: 500;
+}
+
+.theme-premium .about-services {
+    margin-top: var(--space-xl);
+}
+
 /* Industry grid */
 .theme-premium .industry {
     background: var(--pm-dark-bg-alt);
@@ -1666,6 +1683,10 @@ p {
 }
 
 .theme-premium .industry p {
+    color: var(--pm-dark-text-sec);
+}
+
+.theme-premium .section-intro {
     color: var(--pm-dark-text-sec);
 }
 
@@ -1684,7 +1705,7 @@ p {
 
 /* Process steps */
 .theme-premium .process-step {
-    border-left-color: var(--pm-light-border);
+    border-bottom-color: var(--pm-light-border);
 }
 
 .theme-premium .step-number {
@@ -1692,12 +1713,33 @@ p {
     color: #fff;
 }
 
+.theme-premium .step-duration {
+    background: var(--pm-accent-glow);
+    color: var(--pm-accent);
+}
+
 .theme-premium .step-content h2 {
     color: var(--pm-light-text);
 }
 
-.theme-premium .step-content p,
+.theme-premium .step-content p {
+    color: var(--pm-light-text-sec);
+}
+
 .theme-premium .step-details {
+    background: #fff;
+    color: var(--pm-light-text-sec);
+}
+
+.theme-premium .step-details h4 {
+    color: var(--pm-light-text);
+}
+
+.theme-premium .step-details li {
+    color: var(--pm-light-text-sec);
+}
+
+.theme-premium .step-outcome {
     color: var(--pm-light-text-sec);
 }
 
@@ -1740,6 +1782,14 @@ p {
 }
 
 /* Form styles in premium */
+.theme-premium .contact-form-wrapper h2 {
+    color: var(--pm-light-text);
+}
+
+.theme-premium .contact-form-wrapper > p {
+    color: var(--pm-light-text-sec);
+}
+
 .theme-premium .contact-form label {
     color: var(--pm-light-text);
 }
@@ -1756,6 +1806,15 @@ p {
 .theme-premium .contact-form textarea:focus,
 .theme-premium .contact-form select:focus {
     border-color: var(--pm-accent);
+    box-shadow: 0 0 0 3px var(--pm-accent-glow);
+}
+
+.theme-premium .checkbox-label {
+    color: var(--pm-light-text-sec);
+}
+
+.theme-premium .checkbox-label a {
+    color: var(--pm-accent);
 }
 
 /* Legal content */
