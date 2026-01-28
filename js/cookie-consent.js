@@ -39,18 +39,29 @@
         gtag('config', GA_ID);
     }
 
-    // Create and show cookie banner
+    // Create and show cookie modal
     function showBanner() {
         // Don't show if already exists
         if (document.getElementById('cookie-banner')) return;
 
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'cookie-overlay';
+        overlay.className = 'cookie-overlay';
+
+        // Create modal
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
         banner.className = 'cookie-banner';
+        banner.setAttribute('role', 'dialog');
+        banner.setAttribute('aria-modal', 'true');
+        banner.setAttribute('aria-labelledby', 'cookie-title');
         banner.innerHTML = `
             <div class="cookie-banner-content">
-                <p>Folosim cookie-uri pentru a analiza traficul site-ului și a îmbunătăți experiența ta. 
-                   <a href="/ro/confidentialitate.html">Politica de confidențialitate</a></p>
+                <h3 id="cookie-title">Respectăm confidențialitatea ta</h3>
+                <p>Folosim cookie-uri doar pentru a înțelege ce funcționează pe site și a-l îmbunătăți.<br>
+                   <strong>Nu vindem date, nu facem reclame, nu te urmărim pe alte site-uri.</strong></p>
+                <p><a href="/ro/confidentialitate.html">Politica de confidențialitate</a></p>
                 <div class="cookie-banner-actions">
                     <button type="button" class="btn btn-primary" id="cookie-accept">Accept</button>
                     <button type="button" class="btn btn-outline" id="cookie-refuse">Refuz</button>
@@ -58,10 +69,15 @@
             </div>
         `;
 
+        document.body.appendChild(overlay);
         document.body.appendChild(banner);
+
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
 
         // Trigger animation
         requestAnimationFrame(() => {
+            overlay.classList.add('cookie-overlay-visible');
             banner.classList.add('cookie-banner-visible');
         });
 
@@ -79,13 +95,25 @@
         });
     }
 
-    // Hide cookie banner
+    // Hide cookie modal
     function hideBanner() {
+        const overlay = document.getElementById('cookie-overlay');
         const banner = document.getElementById('cookie-banner');
+        
+        if (overlay) {
+            overlay.classList.remove('cookie-overlay-visible');
+        }
         if (banner) {
             banner.classList.remove('cookie-banner-visible');
-            setTimeout(() => banner.remove(), 300);
         }
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+        
+        setTimeout(() => {
+            if (overlay) overlay.remove();
+            if (banner) banner.remove();
+        }, 300);
     }
 
     // Allow user to change consent (callable from console or link)

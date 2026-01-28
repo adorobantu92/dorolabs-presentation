@@ -397,7 +397,25 @@ p {
    =========================================== */
 .hero {
     padding: var(--space-4xl) 0;
-    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 50%, var(--color-bg-alt) 100%);
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
@@ -444,6 +462,19 @@ p {
     padding: var(--space-4xl) 0;
 }
 
+.section-title {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--space-2xl);
+    font-size: 1.125rem;
+}
+
 .value-grid {
     display: grid;
     gap: var(--space-xl);
@@ -454,12 +485,14 @@ p {
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    transition: var(--transition-base);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
 }
 
 .value-card:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 24px -8px rgba(37, 99, 235, 0.15);
     border-color: var(--color-primary-light);
+    transform: translateY(-4px);
 }
 
 .value-icon {
@@ -1290,40 +1323,64 @@ p {
 }
 
 /* ===========================================
-   Cookie Consent Banner
+   Cookie Consent Modal
    =========================================== */
+.cookie-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.cookie-overlay-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
 .cookie-banner {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
     z-index: 9999;
     background-color: var(--color-bg);
-    border-top: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-lg);
-    transform: translateY(100%);
-    transition: transform var(--transition-base);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: var(--space-2xl);
+    max-width: 480px;
+    width: calc(100% - 2rem);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
 }
 
 .cookie-banner-visible {
-    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .cookie-banner-content {
-    max-width: var(--container-max);
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-    align-items: center;
+    gap: var(--space-lg);
     text-align: center;
+}
+
+.cookie-banner-content h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--color-secondary);
 }
 
 .cookie-banner-content p {
     margin: 0;
     font-size: 0.9375rem;
     color: var(--color-text);
+    line-height: 1.7;
 }
 
 .cookie-banner-content a {
@@ -1334,28 +1391,74 @@ p {
 .cookie-banner-actions {
     display: flex;
     gap: var(--space-sm);
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
 }
 
 .cookie-banner-actions .btn {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    width: 100%;
 }
 
-@media (min-width: 768px) {
-    .cookie-banner-content {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .cookie-banner-content p {
-        flex: 1;
-        margin-right: var(--space-lg);
-    }
-
+@media (min-width: 480px) {
     .cookie-banner-actions {
-        flex-shrink: 0;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .cookie-banner-actions .btn {
+        width: auto;
+    }
+}
+
+/* ===========================================
+   WhatsApp Floating Button
+   =========================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9990;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: all var(--transition-base);
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+
+/* Hide WhatsApp when cookie modal is visible */
+.cookie-overlay-visible ~ .whatsapp-float,
+body:has(.cookie-banner-visible) .whatsapp-float {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+    }
+    
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
     }
 }
