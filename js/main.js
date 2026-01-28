@@ -37,6 +37,7 @@
     // Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     const formSuccess = document.getElementById('form-success');
+    const formError = document.getElementById('form-error');
 
     if (contactForm && formSuccess) {
         contactForm.addEventListener('submit', async function(e) {
@@ -45,30 +46,41 @@
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
+            // Hide any previous error message
+            if (formError) {
+                formError.style.display = 'none';
+            }
+            
             // Disable button and show loading state
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = document.documentElement.lang === 'ro' ? 'Se trimite...' : 'Sending...';
             
             try {
                 const formData = new FormData(this);
-                const response = await fetch(this.action, {
+                const response = await fetch('/contact', {
                     method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    body: formData
                 });
 
-                if (response.ok) {
+                const result = await response.json();
+
+                if (response.ok && result.success) {
                     // Hide form, show success message
                     contactForm.style.display = 'none';
                     formSuccess.style.display = 'block';
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error(result.error || 'Form submission failed');
                 }
             } catch (error) {
                 // Show error message
-                alert('There was a problem sending your message. Please try emailing us directly at contact@dorolabs.eu');
+                if (formError) {
+                    formError.style.display = 'block';
+                } else {
+                    const errorMsg = document.documentElement.lang === 'ro' 
+                        ? 'A apărut o problemă la trimiterea mesajului. Te rugăm să ne contactezi direct la dorolabs.ac@gmail.com'
+                        : 'There was a problem sending your message. Please try emailing us directly at dorolabs.ac@gmail.com';
+                    alert(errorMsg);
+                }
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
             }

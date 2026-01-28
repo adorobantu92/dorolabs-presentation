@@ -69,8 +69,8 @@
                         <h2>Trimite-ne un Mesaj</h2>
                         <p>Completează formularul de mai jos și îți vom răspunde în 24 de ore.</p>
                         
-                        <!-- Using Formspree for free form handling -->
-                        <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form" id="contact-form">
+                        <!-- Contact form with server-side handling -->
+                        <form action="/contact" method="POST" class="contact-form" id="contact-form">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Numele Tău *</label>
@@ -151,6 +151,12 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                             <h3>Mesaj Trimis!</h3>
                             <p>Mulțumim că ne-ai contactat. Îți vom răspunde în 24 de ore.</p>
+                        </div>
+                        
+                        <div class="form-error" id="form-error" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            <h3>A apărut o problemă</h3>
+                            <p>Nu am putut trimite mesajul. Te rugăm să ne contactezi direct la <a href="mailto:dorolabs.ac@gmail.com">dorolabs.ac@gmail.com</a></p>
                         </div>
                     </div>
 

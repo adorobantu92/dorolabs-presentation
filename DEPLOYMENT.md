@@ -10,7 +10,7 @@ Complete step-by-step instructions to deploy the DoroLabs website and connect th
 2. [Option A: Cloudflare Pages (Recommended)](#option-a-cloudflare-pages-recommended)
 3. [Option B: GitHub Pages](#option-b-github-pages)
 4. [DNS Configuration for dorolabs.eu](#dns-configuration-for-dorolabseu)
-5. [Contact Form Setup (Formspree)](#contact-form-setup-formspree)
+5. [Contact Form Setup (Resend API)](#contact-form-setup-resend-api)
 6. [Post-Deployment Checklist](#post-deployment-checklist)
 7. [Future Integrations](#future-integrations)
 
@@ -183,46 +183,47 @@ nslookup dorolabs.eu
 
 ---
 
-## Contact Form Setup (Formspree)
+## Contact Form Setup (Resend API)
 
-The contact form needs a backend to receive submissions. Formspree provides this for free.
+The contact form uses a Cloudflare Pages Function with Resend API for email delivery.
 
-### Step 1: Create Formspree Account
+### Step 1: Create Resend Account
 
-1. Go to [formspree.io](https://formspree.io)
+1. Go to [resend.com](https://resend.com)
 2. Sign up with email
-3. Verify email
+3. Verify your account
 
-### Step 2: Create Form Endpoint
+### Step 2: Verify Domain
 
-1. Click **New Form**
-2. Name it "DoroLabs Contact"
-3. Copy the form endpoint (looks like `https://formspree.io/f/xyzabcde`)
+1. In Resend dashboard, go to **Domains**
+2. Add `dorolabs.eu`
+3. Add the required DNS records (SPF, DKIM)
+4. Wait for verification (usually instant)
 
-### Step 3: Update Contact Page
+### Step 3: Get API Key
 
-Edit `contact.html` and replace the form action:
+1. Go to **API Keys** in Resend dashboard
+2. Create a new API key named "DoroLabs Website"
+3. Copy the key (starts with `re_`)
 
-```html
-<!-- Change this line -->
-<form action="https://formspree.io/f/yourformid" method="POST" ...>
+### Step 4: Add Environment Variable
 
-<!-- To your actual form ID -->
-<form action="https://formspree.io/f/xyzabcde" method="POST" ...>
-```
+In Cloudflare Pages dashboard:
+1. Go to your project settings
+2. Navigate to **Environment variables**
+3. Add variable:
+   - Name: `RESEND_API_KEY`
+   - Value: your Resend API key
+4. Add to both Production and Preview environments
 
-### Step 4: Configure Formspree Settings
+### Step 5: Deploy the Function
 
-In Formspree dashboard:
-1. Go to your form settings
-2. Set **Email notifications** to your email
-3. Add `www.dorolabs.eu` and `dorolabs.eu` to **Allowed domains**
-4. Enable **reCAPTCHA** (optional, but recommended)
+The `functions/contact.ts` file will be automatically deployed by Cloudflare Pages.
 
-### Step 5: Test the Form
+### Step 6: Test the Form
 
 1. Submit a test message through your live site
-2. Check your email for the notification
+2. Check `dorolabs.ac@gmail.com` for the notification
 3. Verify all fields are captured correctly
 
 ---
@@ -339,8 +340,9 @@ Or use privacy-friendly alternatives:
 
 ### Form Not Working
 
-- Check Formspree dashboard for errors
-- Verify domain is in allowed list
+- Check Cloudflare Pages deployment logs
+- Verify `RESEND_API_KEY` is set in environment variables
+- Ensure domain is verified in Resend dashboard
 - Check browser console for JavaScript errors
 - Test with different browser
 

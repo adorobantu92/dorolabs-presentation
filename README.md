@@ -69,11 +69,13 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for full deployment instructions.
 
 ## Contact Form Setup
 
-The contact form uses [Formspree](https://formspree.io) (free tier: 50 submissions/month).
+The contact form uses [Resend](https://resend.com) via a Cloudflare Pages Function.
 
-1. Create account at formspree.io
-2. Create new form
-3. Replace `yourformid` in contact.html with your form ID
+1. Set up a Resend account and verify `dorolabs.eu` domain
+2. Get your API key from Resend dashboard
+3. Add `RESEND_API_KEY` environment variable in Cloudflare Pages settings
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed setup instructions.
 
 ## DNS Configuration
 
