@@ -61,16 +61,25 @@
             return;
         }
 
-        // Official Clarity script with privacy settings
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", CLARITY_ID);
-
-        // Privacy configuration - no form input recording, IP masking
-        if (window.clarity) {
-            window.clarity('set', 'content', { input: false });
+        // Load Clarity with error handling
+        try {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.clarity.ms/tag/' + CLARITY_ID;
+            script.onerror = function() {
+                console.log('[Analytics] Clarity blocked or unavailable');
+            };
+            script.onload = function() {
+                // Initialize clarity namespace
+                window.clarity = window.clarity || function() {
+                    (window.clarity.q = window.clarity.q || []).push(arguments);
+                };
+                // Privacy configuration - no form input recording
+                window.clarity('set', 'content', { input: false });
+            };
+            document.head.appendChild(script);
+        } catch (e) {
+            console.log('[Analytics] Clarity failed to load');
         }
     }
 

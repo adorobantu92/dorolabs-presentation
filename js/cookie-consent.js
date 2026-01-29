@@ -25,18 +25,24 @@
         if (window.gaLoaded) return;
         window.gaLoaded = true;
 
-        // Load gtag.js script
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        document.head.appendChild(script);
-
-        // Initialize gtag
+        // Initialize gtag first (so it exists even if script fails)
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', GA_ID);
+
+        // Load gtag.js script with error handling
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        script.onerror = function() {
+            // Silently fail - likely blocked by ad blocker
+            console.log('[Analytics] GA4 blocked or unavailable');
+        };
+        script.onload = function() {
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+        };
+        document.head.appendChild(script);
     }
 
     // Create and show cookie modal
