@@ -111,9 +111,25 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
     const emailHtml = buildEmailHtml(data);
     const emailText = buildEmailText(data);
 
-    // Determine subject based on interest/service
-    const serviceInfo = data.interest || data.service || 'General inquiry';
-    const subject = `New contact request – DoroLabs [${serviceInfo}]`;
+    // Build sales-focused subject line
+    let subject: string;
+    if (data.selected_package) {
+      subject = `New ${data.selected_package.toUpperCase()} Package Lead – DoroLabs`;
+    } else if (data.selected_service) {
+      const serviceMap: Record<string, string> = {
+        seo: 'SEO',
+        ai: 'AI Automation',
+        reminders: 'Reminders',
+        custom: 'Custom Tools',
+        general: 'General',
+      };
+      const serviceName = serviceMap[data.selected_service] || data.selected_service;
+      subject = `New Lead (${serviceName}) – DoroLabs`;
+    } else if (data.interest || data.service) {
+      subject = `New Lead – DoroLabs [${data.interest || data.service}]`;
+    } else {
+      subject = `New Lead – DoroLabs`;
+    }
 
     // Send email via Resend API
     // Note: Use 'onboarding@resend.dev' for testing until dorolabs.eu is verified
@@ -179,69 +195,80 @@ function escapeHtml(text: string): string {
 }
 
 function buildEmailHtml(data: ContactFormData): string {
-  const rows: string[] = [];
-
-  // Package/Service tracking at top for visibility
+  // Section 1: Package & Service Interest
+  const interestSection: string[] = [];
   if (data.selected_package) {
     const pkgDisplay = data.selected_package.toUpperCase();
-    rows.push(`<tr style="background: #e8f4f8;"><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>🎯 Package:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${escapeHtml(pkgDisplay)}</strong></td></tr>`);
+    interestSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Package</td><td style="padding: 6px 12px; font-weight: 600;">${escapeHtml(pkgDisplay)}</td></tr>`);
   }
   if (data.selected_service) {
-    rows.push(`<tr style="background: #e8f4f8;"><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>🔧 Service Interest:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${escapeHtml(data.selected_service)}</strong></td></tr>`);
+    const serviceMap: Record<string, string> = {
+      seo: 'SEO & Visibility',
+      ai: 'AI Automation',
+      reminders: 'Appointment Reminders',
+      custom: 'Custom Tools',
+      general: 'General Inquiry',
+    };
+    const serviceName = serviceMap[data.selected_service] || data.selected_service;
+    interestSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Service</td><td style="padding: 6px 12px; font-weight: 600;">${escapeHtml(serviceName)}</td></tr>`);
   }
-
-  rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.name)}</td></tr>`);
-  rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>`);
-
-  if (data.phone) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></td></tr>`);
-  }
-
-  if (data.company) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Company:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.company)}</td></tr>`);
-  }
-
-  if (data.existing_website) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Has Website:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.existing_website)}</td></tr>`);
-  }
-
   if (data.interest) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Interest:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.interest)}</td></tr>`);
+    interestSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Interest</td><td style="padding: 6px 12px;">${escapeHtml(data.interest)}</td></tr>`);
   }
-
   if (data.service) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Service:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.service)}</td></tr>`);
+    interestSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Form Service</td><td style="padding: 6px 12px;">${escapeHtml(data.service)}</td></tr>`);
   }
-
   if (data.budget) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Budget:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.budget)}</td></tr>`);
+    interestSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Budget</td><td style="padding: 6px 12px; font-weight: 600;">${escapeHtml(data.budget)}</td></tr>`);
   }
 
-  if (data.message) {
-    rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Message:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.message).replace(/\n/g, '<br>')}</td></tr>`);
+  // Section 2: Contact Details
+  const contactSection: string[] = [];
+  contactSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Name</td><td style="padding: 6px 12px;">${escapeHtml(data.name)}</td></tr>`);
+  contactSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Email</td><td style="padding: 6px 12px;"><a href="mailto:${escapeHtml(data.email)}" style="color: #283d3d;">${escapeHtml(data.email)}</a></td></tr>`);
+  if (data.phone) {
+    contactSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Phone</td><td style="padding: 6px 12px;"><a href="tel:${escapeHtml(data.phone)}" style="color: #283d3d;">${escapeHtml(data.phone)}</a></td></tr>`);
   }
+
+  // Section 3: Business Context
+  const businessSection: string[] = [];
+  if (data.company) {
+    businessSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Company</td><td style="padding: 6px 12px;">${escapeHtml(data.company)}</td></tr>`);
+  }
+  if (data.existing_website) {
+    businessSection.push(`<tr><td style="padding: 6px 12px; color: #666;">Has Website</td><td style="padding: 6px 12px;">${escapeHtml(data.existing_website)}</td></tr>`);
+  }
+  if (data.message) {
+    businessSection.push(`<tr><td style="padding: 6px 12px; color: #666; vertical-align: top;">Message</td><td style="padding: 6px 12px;">${escapeHtml(data.message).replace(/\n/g, '<br>')}</td></tr>`);
+  }
+
+  // Build HTML sections
+  const buildSection = (title: string, rows: string[]): string => {
+    if (rows.length === 0) return '';
+    return `
+    <div style="margin-bottom: 16px;">
+      <div style="background: #283d3d; color: white; padding: 8px 12px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">${title}</div>
+      <table style="width: 100%; border-collapse: collapse; background: #fafafa; border: 1px solid #e0e0e0; border-top: none;">
+        ${rows.join('\n        ')}
+      </table>
+    </div>`;
+  };
 
   return `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>New Contact Request</title>
+  <title>New Lead</title>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: #283d3d; color: white; padding: 20px; border-radius: 8px 8px 0 0;">
-    <h1 style="margin: 0; font-size: 24px;">New Contact Request</h1>
-    <p style="margin: 10px 0 0 0; opacity: 0.9;">DoroLabs Website Form Submission</p>
-  </div>
-  
-  <div style="background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-    <table style="width: 100%; border-collapse: collapse;">
-      ${rows.join('\n      ')}
-    </table>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; color: #333; max-width: 500px; margin: 0 auto; padding: 16px; background: #f5f5f5;">
+  <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    ${buildSection('Package & Service Interest', interestSection)}
+    ${buildSection('Contact Details', contactSection)}
+    ${buildSection('Business Context', businessSection)}
     
-    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
-      <p>This message was sent from the DoroLabs website contact form.</p>
-      <p>Reply directly to this email to respond to the sender.</p>
+    <div style="padding: 12px; font-size: 11px; color: #999; text-align: center; border-top: 1px solid #eee;">
+      DoroLabs Website Form • Reply to respond
     </div>
   </div>
 </body>
@@ -250,43 +277,57 @@ function buildEmailHtml(data: ContactFormData): string {
 }
 
 function buildEmailText(data: ContactFormData): string {
-  const lines: string[] = [
-    'New Contact Request - DoroLabs',
-    '================================',
-    '',
-  ];
+  const lines: string[] = [];
 
-  // Package/Service tracking at top
+  // ========== PACKAGE & SERVICE INTEREST ==========
+  lines.push('PACKAGE & SERVICE INTEREST');
+  lines.push('─'.repeat(30));
   if (data.selected_package) {
-    lines.push(`🎯 PACKAGE: ${data.selected_package.toUpperCase()}`);
+    lines.push(`Package:     ${data.selected_package.toUpperCase()}`);
   }
   if (data.selected_service) {
-    lines.push(`🔧 SERVICE INTEREST: ${data.selected_service}`);
+    const serviceMap: Record<string, string> = {
+      seo: 'SEO & Visibility',
+      ai: 'AI Automation',
+      reminders: 'Appointment Reminders',
+      custom: 'Custom Tools',
+      general: 'General Inquiry',
+    };
+    lines.push(`Service:     ${serviceMap[data.selected_service] || data.selected_service}`);
   }
-  if (data.selected_package || data.selected_service) {
-    lines.push('');
+  if (data.interest) lines.push(`Interest:    ${data.interest}`);
+  if (data.service) lines.push(`Form Svc:    ${data.service}`);
+  if (data.budget) lines.push(`Budget:      ${data.budget}`);
+  if (!data.selected_package && !data.selected_service && !data.interest && !data.service && !data.budget) {
+    lines.push('(No specific interest indicated)');
   }
-
-  lines.push(`Name: ${data.name}`);
-  lines.push(`Email: ${data.email}`);
-
-  if (data.phone) lines.push(`Phone: ${data.phone}`);
-  if (data.company) lines.push(`Company: ${data.company}`);
-  if (data.existing_website) lines.push(`Has Website: ${data.existing_website}`);
-  if (data.interest) lines.push(`Interest: ${data.interest}`);
-  if (data.service) lines.push(`Service: ${data.service}`);
-  if (data.budget) lines.push(`Budget: ${data.budget}`);
-
-  if (data.message) {
-    lines.push('');
-    lines.push('Message:');
-    lines.push('--------');
-    lines.push(data.message);
-  }
-
   lines.push('');
-  lines.push('---');
-  lines.push('This message was sent from the DoroLabs website contact form.');
+
+  // ========== CONTACT DETAILS ==========
+  lines.push('CONTACT DETAILS');
+  lines.push('─'.repeat(30));
+  lines.push(`Name:        ${data.name}`);
+  lines.push(`Email:       ${data.email}`);
+  if (data.phone) lines.push(`Phone:       ${data.phone}`);
+  lines.push('');
+
+  // ========== BUSINESS CONTEXT ==========
+  if (data.company || data.existing_website || data.message) {
+    lines.push('BUSINESS CONTEXT');
+    lines.push('─'.repeat(30));
+    if (data.company) lines.push(`Company:     ${data.company}`);
+    if (data.existing_website) lines.push(`Has Website: ${data.existing_website}`);
+    if (data.message) {
+      lines.push('');
+      lines.push('Message:');
+      lines.push(data.message);
+    }
+    lines.push('');
+  }
+
+  // Footer
+  lines.push('─'.repeat(30));
+  lines.push('DoroLabs Website Form • Reply to respond');
 
   return lines.join('\n');
 }
