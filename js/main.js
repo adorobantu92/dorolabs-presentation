@@ -6,6 +6,18 @@
 (function() {
     'use strict';
 
+    // Populate hidden fields from URL params (package/service tracking)
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedPackage = document.getElementById('selected-package');
+    const selectedService = document.getElementById('selected-service');
+    
+    if (selectedPackage) {
+        selectedPackage.value = urlParams.get('pachet') || '';
+    }
+    if (selectedService) {
+        selectedService.value = urlParams.get('service') || '';
+    }
+
     // Mobile Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');

@@ -18,6 +18,7 @@ npm-debug.log*
 # Local environment
 .env
 .env.local
+.dev.vars
 
 # Build outputs (if any future build step added)
 dist/

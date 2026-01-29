@@ -71,6 +71,10 @@
                         
                         <!-- Contact form with server-side handling -->
                         <form action="/contact" method="POST" class="contact-form" id="contact-form">
+                            <!-- Hidden fields for package/service tracking -->
+                            <input type="hidden" name="selected_package" id="selected-package" value="">
+                            <input type="hidden" name="selected_service" id="selected-service" value="">
+                            
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Numele Tău *</label>

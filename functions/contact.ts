@@ -17,6 +17,8 @@ interface ContactFormData {
   budget?: string;
   message?: string;
   consent?: string;
+  selected_package?: string;
+  selected_service?: string;
 }
 
 interface ResendResponse {
@@ -76,6 +78,8 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
       budget: formData.get('budget')?.toString() || '',
       message: formData.get('message')?.toString() || '',
       consent: formData.get('consent')?.toString() || '',
+      selected_package: formData.get('selected_package')?.toString() || '',
+      selected_service: formData.get('selected_service')?.toString() || '',
     };
 
     // Honeypot check (spam prevention)
@@ -112,6 +116,7 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
     const subject = `New contact request – DoroLabs [${serviceInfo}]`;
 
     // Send email via Resend API
+    // Note: Use 'onboarding@resend.dev' for testing until dorolabs.eu is verified
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -119,7 +124,7 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'DoroLabs <no-reply@dorolabs.eu>',
+        from: 'DoroLabs <onboarding@resend.dev>',
         to: ['dorolabs.ac@gmail.com'],
         subject: subject,
         html: emailHtml,
@@ -129,6 +134,10 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
     });
 
     const resendResult: ResendResponse = await resendResponse.json();
+    
+    // Log for debugging
+    console.log('Resend response status:', resendResponse.status);
+    console.log('Resend result:', JSON.stringify(resendResult));
 
     if (!resendResponse.ok) {
       console.error('Resend API error:', resendResult);
@@ -171,6 +180,15 @@ function escapeHtml(text: string): string {
 
 function buildEmailHtml(data: ContactFormData): string {
   const rows: string[] = [];
+
+  // Package/Service tracking at top for visibility
+  if (data.selected_package) {
+    const pkgDisplay = data.selected_package.toUpperCase();
+    rows.push(`<tr style="background: #e8f4f8;"><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>🎯 Package:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${escapeHtml(pkgDisplay)}</strong></td></tr>`);
+  }
+  if (data.selected_service) {
+    rows.push(`<tr style="background: #e8f4f8;"><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>🔧 Service Interest:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${escapeHtml(data.selected_service)}</strong></td></tr>`);
+  }
 
   rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(data.name)}</td></tr>`);
   rows.push(`<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>`);
@@ -236,9 +254,21 @@ function buildEmailText(data: ContactFormData): string {
     'New Contact Request - DoroLabs',
     '================================',
     '',
-    `Name: ${data.name}`,
-    `Email: ${data.email}`,
   ];
+
+  // Package/Service tracking at top
+  if (data.selected_package) {
+    lines.push(`🎯 PACKAGE: ${data.selected_package.toUpperCase()}`);
+  }
+  if (data.selected_service) {
+    lines.push(`🔧 SERVICE INTEREST: ${data.selected_service}`);
+  }
+  if (data.selected_package || data.selected_service) {
+    lines.push('');
+  }
+
+  lines.push(`Name: ${data.name}`);
+  lines.push(`Email: ${data.email}`);
 
   if (data.phone) lines.push(`Phone: ${data.phone}`);
   if (data.company) lines.push(`Company: ${data.company}`);
